@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESKABOT // SYSTEM_INIT</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #d1d1d1;
+            --accent-color: #00ff41; /* Verde terminal */
+            --border-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            cursor: crosshair;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 50px;
+        }
+
+        h1 { font-size: calc(1.5rem + 1vw); color: var(--accent-color); margin: 0; }
+        .subtitle { font-size: 0.9rem; opacity: 0.7; }
+
+        /* EFECTO REVELADO AL SCROLLEAR */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estructura de Proyectos */
+        .project-card {
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 60px; /* Mayor espacio para apreciar el scroll */
+            transition: all 0.3s ease;
+            position: relative;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-color);
+            background: rgba(0, 255, 65, 0.03);
+        }
+
+        .project-tag {
+            font-size: 0.7rem;
+            background: var(--accent-color);
+            color: black;
+            padding: 2px 8px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        h2 { font-size: 1.4rem; margin-top: 0; color: #fff; }
+        p { font-size: 0.95rem; }
+
+        .tech-stack {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            margin-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 10px;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            text-align: center;
+            margin: 100px 0;
+            padding: 40px 20px;
+            border: 2px dashed var(--accent-color);
+        }
+
+        .btn {
+            background: var(--accent-color);
+            color: black;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: white;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* Adaptabilidad Celular */
+        @media (max-width: 600px) {
+            header { height: 50vh; }
+            .project-card { padding: 20px; margin-bottom: 40px; }
+            .btn { width: 100%; text-align: center; }
+            h2 { font-size: 1.2rem; }
+        }
+
+        /* Glitch Animation */
+        .glitch {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="reveal">
+        <h1 class="glitch">TESKABOT // SYSTEM_INIT</h1>
+        <div class="subtitle">Analista de Sistemas | Digital Trash Developer | Audio Research</div>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: var(--accent-color);">[ STATUS: ONLINE ]</p>
+    </header>
+
+    <section class="project-card reveal">
+        <span class="project-tag">AUTOMATION // BOT</span>
+        <h2>Polish Appointment Tracker</h2>
+        <p>Desarrollo de un sistema autónomo de monitoreo para el Consulado de Polonia. El script simula navegación humana para detectar cupos liberados y notifica vía SMTP en tiempo real.</p>
+        <div class="tech-stack">STACK: Python, Playwright, GitHub Actions, Linux.</div>
+    </section>
+
+    <section class="project-card reveal">
+        <span class="project-tag">E-COMMERCE // BUSINESS</span>
+        <h2>Plataforma Psicología Social</h2>
+        <p>Arquitectura digital para venta de talleres grupales. Eliminación de procesos manuales mediante integración de pasarela de pagos y gestión de inscripciones autogestionable.</p>
+        <div class="tech-stack">STACK: Web Personalizada, Mercado Pago API, CMS Admin, IA.</div>
+    </section>
+
+    <section class="project-card reveal">
+        <span class="project-tag">ECOSYSTEM // VISUALS</span>
+        <h2>Mutante Eterno: Web Experience</h2>
+        <p>Landing page interactiva para el lanzamiento del álbum. Estética industrial/trash con optimización de assets para alto impacto visual sin sacrificar performance.</p>
+        <div class="tech-stack">STACK: HTML5, CSS3 (Glitch Engine), Flask, Spotify API, IA.</div>
+    </section>
+
+    <section class="project-card reveal">
+        <span class="project-tag">R&D // AUDIO DSP</span>
+        <h2>Digital Trash Processor</h2>
+        <p>Prototipado de software para procesamiento de señales de audio. Algoritmos de distorsión digital y manipulación de bits para texturas sonoras extremas.</p>
+        <div class="tech-stack">STACK: Python (DSP), Wavelet Theory, Bitcrushing Logic, IA.</div>
+    </section>
+
+    <section class="cta-section reveal">
+        <h3>¿LISTO PARA ESCALAR TU PROYECTO?</h3>
+        <p>Diseñamos las herramientas de tu trabajo, a tu gusto. <br>
+            Presupuestos basados en lógica técnica y retorno de inversión.</p>
+        <a href="mailto:sardelic.tomas@gmail.com" class="btn">[ ESTABLECER_CONEXIÓN ]</a>
+    </section>
+</div>
+
+<script>
+    // Lógica de revelado con Intersection Observer (más eficiente que el evento scroll puro)
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

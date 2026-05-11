@@ -8,30 +8,36 @@
         :root {
             --bg-color: #0a0a0a;
             --text-color: #d1d1d1;
-            --accent-color: #00ff41; /* Verde terminal */
+            --accent-color: #00ff41;
             --border-color: #333;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             line-height: 1.6;
             cursor: crosshair;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
+        /* EFECTO MONITOR CRT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 200;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
         }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
         header {
             height: 70vh;
@@ -42,13 +48,19 @@
             margin-bottom: 50px;
         }
 
-        h1 { font-size: calc(1.5rem + 1vw); color: var(--accent-color); margin: 0; }
-        .subtitle { font-size: 0.9rem; opacity: 0.7; }
+        h1 { font-size: calc(1.5rem + 2vw); color: var(--accent-color); margin: 0; }
+        
+        /* EFECTO TYPEWRITER */
+        .typing-text {
+            font-size: 1rem;
+            min-height: 1.2em;
+            margin-top: 10px;
+            color: var(--text-color);
+        }
 
-        /* EFECTO REVELADO AL SCROLLEAR */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -57,19 +69,17 @@
             transform: translateY(0);
         }
 
-        /* Estructura de Proyectos */
         .project-card {
             border: 1px solid var(--border-color);
             padding: 25px;
-            margin-bottom: 60px; /* Mayor espacio para apreciar el scroll */
-            transition: all 0.3s ease;
-            position: relative;
+            margin-bottom: 60px;
             background: rgba(255, 255, 255, 0.01);
+            transition: 0.3s;
         }
 
         .project-card:hover {
             border-color: var(--accent-color);
-            background: rgba(0, 255, 65, 0.03);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
         }
 
         .project-tag {
@@ -82,8 +92,7 @@
             font-weight: bold;
         }
 
-        h2 { font-size: 1.4rem; margin-top: 0; color: #fff; }
-        p { font-size: 0.95rem; }
+        h2 { font-size: 1.4rem; margin-top: 0; color: #fff; text-transform: uppercase; }
 
         .tech-stack {
             font-size: 0.8rem;
@@ -93,11 +102,10 @@
             padding-top: 10px;
         }
 
-        /* Call to Action */
         .cta-section {
             text-align: center;
             margin: 100px 0;
-            padding: 40px 20px;
+            padding: 40px;
             border: 2px dashed var(--accent-color);
         }
 
@@ -109,93 +117,86 @@
             font-weight: bold;
             display: inline-block;
             margin-top: 20px;
-            transition: all 0.2s;
+            transition: 0.2s;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .btn:hover {
-            transform: scale(1.05);
-            background: white;
-            box-shadow: 0 0 15px var(--accent-color);
+            background: #fff;
+            box-shadow: 0 0 20px var(--accent-color);
         }
 
-        /* Adaptabilidad Celular */
         @media (max-width: 600px) {
             header { height: 50vh; }
-            .project-card { padding: 20px; margin-bottom: 40px; }
             .btn { width: 100%; text-align: center; }
-            h2 { font-size: 1.2rem; }
-        }
-
-        /* Glitch Animation */
-        .glitch {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header class="reveal">
-        <h1 class="glitch">TESKABOT // SYSTEM_INIT</h1>
-        <div class="subtitle">Analista de Sistemas | Digital Trash Developer | Audio Research</div>
-        <p style="margin-top: 20px; font-size: 0.8rem; color: var(--accent-color);">[ STATUS: ONLINE ]</p>
+    <header>
+        <h1>TESKABOT // SYSTEM_INIT</h1>
+        <div id="typewriter" class="typing-text"></div>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: var(--accent-color);">[ STATUS: LOGGED_IN ]</p>
     </header>
 
     <section class="project-card reveal">
         <span class="project-tag">AUTOMATION // BOT</span>
         <h2>Polish Appointment Tracker</h2>
-        <p>Desarrollo de un sistema autónomo de monitoreo para el Consulado de Polonia. El script simula navegación humana para detectar cupos liberados y notifica vía SMTP en tiempo real.</p>
-        <div class="tech-stack">STACK: Python, Playwright, GitHub Actions, Linux.</div>
+        <p>Monitoreo autónomo de cupos consulares. Simulación de comportamiento humano y alertas vía SMTP. <strong>Ahorro estimado: 15hs semanales.</strong></p>
+        <div class="tech-stack">STACK: Python, Playwright, GitHub Actions.</div>
     </section>
 
     <section class="project-card reveal">
         <span class="project-tag">E-COMMERCE // BUSINESS</span>
         <h2>Plataforma Psicología Social</h2>
-        <p>Arquitectura digital para venta de talleres grupales. Eliminación de procesos manuales mediante integración de pasarela de pagos y gestión de inscripciones autogestionable.</p>
-        <div class="tech-stack">STACK: Web Personalizada, Mercado Pago API, CMS Admin, IA.</div>
+        <p>Infraestructura para talleres virtuales. Automatización de inscripciones y cobros con Mercado Pago API. <strong>Conversión directa a ventas 24/7.</strong></p>
+        <div class="tech-stack">STACK: Custom CMS, Mercado Pago, Python.</div>
     </section>
 
     <section class="project-card reveal">
         <span class="project-tag">ECOSYSTEM // VISUALS</span>
         <h2>Mutante Eterno: Web Experience</h2>
-        <p>Landing page interactiva para el lanzamiento del álbum. Estética industrial/trash con optimización de assets para alto impacto visual sin sacrificar performance.</p>
-        <div class="tech-stack">STACK: HTML5, CSS3 (Glitch Engine), Flask, Spotify API, IA.</div>
+        <p>Experiencia inmersiva con estética digital trash. Optimización de assets para alto impacto visual. <strong>Centralización de identidad artística.</strong></p>
+        <div class="tech-stack">STACK: HTML5, CSS Glitch Engine, Flask.</div>
     </section>
 
     <section class="project-card reveal">
         <span class="project-tag">R&D // AUDIO DSP</span>
         <h2>Digital Trash Processor</h2>
-        <p>Prototipado de software para procesamiento de señales de audio. Algoritmos de distorsión digital y manipulación de bits para texturas sonoras extremas.</p>
-        <div class="tech-stack">STACK: Python (DSP), Wavelet Theory, Bitcrushing Logic, IA.</div>
+        <p>Desarrollo de herramientas de audio. Algoritmos de bitcrushing y distorsión digital para texturas industriales. <strong>Lógica de bajo nivel aplicada.</strong></p>
+        <div class="tech-stack">STACK: Python (DSP), Wavelet Logic, IA.</div>
     </section>
 
     <section class="cta-section reveal">
-        <h3>¿LISTO PARA ESCALAR TU PROYECTO?</h3>
-        <p>Diseñamos las herramientas de tu trabajo, a tu gusto. <br>
-            Presupuestos basados en lógica técnica y retorno de inversión.</p>
+        <h3>¿INICIAR PROYECTO?</h3>
+        <p>Arquitectura de soluciones a medida. <br> Presupuestos por retorno de inversión.</p>
         <a href="mailto:sardelic.tomas@gmail.com" class="btn">[ ESTABLECER_CONEXIÓN ]</a>
     </section>
 </div>
 
 <script>
-    // Lógica de revelado con Intersection Observer (más eficiente que el evento scroll puro)
-    const observerOptions = {
-        threshold: 0.1
-    };
+    // EFECTO TYPEWRITER
+    const text = "Analista de Sistemas | Digital Trash Developer | Audio Research";
+    let i = 0;
+    function typeWriter() {
+        if (i < text.length) {
+            document.getElementById("typewriter").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        }
+    }
+    window.onload = typeWriter;
 
+    // REVELADO POR SCROLL
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>

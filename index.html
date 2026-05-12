@@ -40,7 +40,7 @@
         .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
         header {
-            height: 70vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -50,13 +50,19 @@
 
         h1 { font-size: calc(1.5rem + 2vw); color: var(--accent-color); margin: 0; }
         
-        /* EFECTO TYPEWRITER */
         .typing-text {
             font-size: 1rem;
             min-height: 1.2em;
             margin-top: 10px;
             color: var(--text-color);
         }
+
+        #typewriter::after {
+            content: "|";
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         .reveal {
             opacity: 0;
@@ -69,17 +75,46 @@
             transform: translateY(0);
         }
 
+        /* Estructura de Proyectos Mejorada */
         .project-card {
             border: 1px solid var(--border-color);
             padding: 25px;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             background: rgba(255, 255, 255, 0.01);
             transition: 0.3s;
         }
 
         .project-card:hover {
             border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+        }
+
+        /* Contenedor de Imagen/Visual */
+        .project-visual {
+            width: 100%;
+            height: 200px;
+            background: #111;
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            filter: grayscale(1) contrast(1.2);
+            transition: 0.5s;
+        }
+
+        .project-card:hover .project-visual img {
+            opacity: 0.9;
+            filter: grayscale(0.5) contrast(1);
         }
 
         .project-tag {
@@ -94,12 +129,30 @@
 
         h2 { font-size: 1.4rem; margin-top: 0; color: #fff; text-transform: uppercase; }
 
+        /* Estilo para los links de proyectos */
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+            border: 1px solid var(--accent-color);
+            padding: 5px 10px;
+            transition: 0.3s;
+        }
+
+        .project-link:hover {
+            background: var(--accent-color);
+            color: black;
+        }
+
         .tech-stack {
             font-size: 0.8rem;
             color: var(--accent-color);
             margin-top: 15px;
             border-top: 1px dashed var(--border-color);
             padding-top: 10px;
+            opacity: 0.8;
         }
 
         .cta-section {
@@ -121,13 +174,11 @@
             text-transform: uppercase;
         }
 
-        .btn:hover {
-            background: #fff;
-            box-shadow: 0 0 20px var(--accent-color);
-        }
+        .btn:hover { background: #fff; box-shadow: 0 0 20px var(--accent-color); }
 
         @media (max-width: 600px) {
             header { height: 50vh; }
+            .project-visual { height: 150px; }
             .btn { width: 100%; text-align: center; }
         }
     </style>
@@ -141,31 +192,50 @@
         <p style="margin-top: 20px; font-size: 0.8rem; color: var(--accent-color);">[ STATUS: LOGGED_IN ]</p>
     </header>
 
+    <!-- PROYECTO 1 -->
     <section class="project-card reveal">
         <span class="project-tag">AUTOMATION // BOT</span>
         <h2>Polish Appointment Tracker</h2>
+        <div class="project-visual">
+            <!-- Reemplazar 'captura1.jpg' con tu imagen real -->
+            <img src="https://via.placeholder.com/800x400/000/00ff41?text=CONSOLE_LOG_DATA" alt="Visualización del Bot">
+        </div>
         <p>Monitoreo autónomo de cupos consulares. Simulación de comportamiento humano y alertas vía SMTP. <strong>Ahorro estimado: 15hs semanales.</strong></p>
         <div class="tech-stack">STACK: Python, Playwright, GitHub Actions.</div>
     </section>
 
+    <!-- PROYECTO 2 -->
     <section class="project-card reveal">
         <span class="project-tag">E-COMMERCE // BUSINESS</span>
         <h2>Plataforma Psicología Social</h2>
-        <p>Infraestructura para talleres virtuales. Automatización de inscripciones y cobros con Mercado Pago API. <strong>Conversión directa a ventas 24/7.</strong></p>
+        <div class="project-visual">
+            <img src="https://via.placeholder.com/800x400/000/00ff41?text=E-COMMERCE_STRUCTURE" alt="Plataforma Psicología">
+        </div>
+        <p>Infraestructura para talleres virtuales. Automatización de inscripciones y cobros con Mercado Pago API.</p>
+        <a href="https://URL-DE-EJEMPLO.com" target="_blank" class="project-link">[ EJECUTAR_SITIO_LIVE ]</a>
         <div class="tech-stack">STACK: Custom CMS, Mercado Pago, Python.</div>
     </section>
 
+    <!-- PROYECTO 3 -->
     <section class="project-card reveal">
         <span class="project-tag">ECOSYSTEM // VISUALS</span>
         <h2>Mutante Eterno: Web Experience</h2>
-        <p>Experiencia inmersiva con estética digital trash. Optimización de assets para alto impacto visual. <strong>Centralización de identidad artística.</strong></p>
-        <div class="tech-stack">STACK: HTML5, CSS Glitch Engine, Flask.</div>
+        <div class="project-visual">
+            <img src="https://via.placeholder.com/800x400/000/00ff41?text=GLITCH_UI_UX" alt="Mutante Eterno">
+        </div>
+        <p>Experiencia inmersiva con estética digital trash para lanzamientos musicales.</p>
+        <a href="https://URL-DE-EJEMPLO.com" target="_blank" class="project-link">[ ACCEDER_A_EXPERIENCIA ]</a>
+        <div class="tech-stack">STACK: HTML5, CSS Glitch Engine, Flask, IA.</div>
     </section>
 
+    <!-- PROYECTO 4 -->
     <section class="project-card reveal">
         <span class="project-tag">R&D // AUDIO DSP</span>
         <h2>Digital Trash Processor</h2>
-        <p>Desarrollo de herramientas de audio. Algoritmos de bitcrushing y distorsión digital para texturas industriales. <strong>Lógica de bajo nivel aplicada.</strong></p>
+        <div class="project-visual">
+            <img src="https://via.placeholder.com/800x400/000/00ff41?text=DSP_ALGORITHM_WAVE" alt="Audio Processor">
+        </div>
+        <p>Desarrollo de algoritmos de bitcrushing y distorsión digital para texturas industriales.</p>
         <div class="tech-stack">STACK: Python (DSP), Wavelet Logic, IA.</div>
     </section>
 
@@ -177,7 +247,6 @@
 </div>
 
 <script>
-    // EFECTO TYPEWRITER
     const text = "Analista de Sistemas | Digital Trash Developer | Audio Research";
     let i = 0;
     function typeWriter() {
@@ -189,7 +258,6 @@
     }
     window.onload = typeWriter;
 
-    // REVELADO POR SCROLL
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
